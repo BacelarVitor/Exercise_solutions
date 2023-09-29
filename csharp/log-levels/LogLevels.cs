@@ -1,19 +1,22 @@
 using System;
+using System.Collections.Immutable;
 
 static class LogLine
 {
     public static string Message(string logLine)
     {
-        throw new NotImplementedException("Please implement the (static) LogLine.Message() method");
+        var message = logLine.Split(": ")[1];
+        return message.Trim();
     }
 
     public static string LogLevel(string logLine)
     {
-        throw new NotImplementedException("Please implement the (static) LogLine.LogLevel() method");
+        var level = logLine.Split(": ")[0];
+        return level.Replace("[", string.Empty).Replace("]", string.Empty).ToLower().Trim();
     }
 
     public static string Reformat(string logLine)
     {
-        throw new NotImplementedException("Please implement the (static) LogLine.Reformat() method");
+        return $"{Message(logLine)} ({LogLevel(logLine)})";
     }
 }
