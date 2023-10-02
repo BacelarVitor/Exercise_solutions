@@ -17,7 +17,11 @@ func GetItem(slice []int, index int) int {
 // SetItem writes an item to a slice at given position overwriting an existing value.
 // If the index is out of range the value needs to be appended.
 func SetItem(slice []int, index, value int) []int {
-	slice[index] = value
+	if index < 0 || index >= len(slice) {
+		slice = append(slice, value)
+	} else {
+		slice[index] = value
+	}
 	return slice
 }
 
